@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './SearchBox.css';
+import { fetchMovieQuery } from '../../redux/actions';
+import { connect } from 'react-redux';
 
 class SearchBox extends Component {
     state = {
@@ -10,7 +12,9 @@ class SearchBox extends Component {
     }
     searchBoxSubmitHandler = (e) => {
         e.preventDefault();
+        this.props.dispatch(fetchMovieQuery(this.state.searchLine));
     }
+
     render() {
         const { searchLine } = this.state;
 
@@ -20,7 +24,7 @@ class SearchBox extends Component {
                     <label className="search-box__form-label">
                         Искать фильм по названию:
                         <input
-                            value={searchLine}
+                            // value={searchLine}
                             type="text"
                             className="search-box__form-input"
                             placeholder="Например, Shawshank Redemption"
@@ -31,6 +35,7 @@ class SearchBox extends Component {
                         type="submit"
                         className="search-box__form-submit"
                         disabled={!searchLine}
+                        onClick={this.searchBoxSubmitHandler}
                     >
                         Искать
                     </button>
@@ -39,5 +44,8 @@ class SearchBox extends Component {
         );
     }
 }
- 
-export default SearchBox;
+// const mapDispatchToProps = dispatch => ({
+//     fetchMovieQuery: (searchLine) => dispatch(fetchMovieQuery(searchLine))
+//   });
+export default connect(null)(SearchBox);
+

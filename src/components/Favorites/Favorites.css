@@ -13,6 +13,10 @@
     margin-bottom: 24px;
 }
 
+.favorites__name:disabled {
+    opacity: 0.6;
+}
+
 .favorites__list {
     margin-bottom: 24px;
 }

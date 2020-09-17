@@ -24,7 +24,6 @@ class SearchBox extends Component {
                     <label className="search-box__form-label">
                         Искать фильм по названию:
                         <input
-                            // value={searchLine}
                             type="text"
                             className="search-box__form-input"
                             placeholder="Например, Shawshank Redemption"
@@ -35,7 +34,6 @@ class SearchBox extends Component {
                         type="submit"
                         className="search-box__form-submit"
                         disabled={!searchLine}
-                        onClick={this.searchBoxSubmitHandler}
                     >
                         Искать
                     </button>
@@ -44,8 +42,6 @@ class SearchBox extends Component {
         );
     }
 }
-// const mapDispatchToProps = dispatch => ({
-//     fetchMovieQuery: (searchLine) => dispatch(fetchMovieQuery(searchLine))
-//   });
+
 export default connect(null)(SearchBox);
 

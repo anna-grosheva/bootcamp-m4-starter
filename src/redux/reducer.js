@@ -1,6 +1,10 @@
 const initialState = {
     movies: [],
-    favorites: []
+    favorites: [],
+    listID: '',
+    title: '',
+    listMovies: [],
+    listMovieDetails: []
 }
 
 function reducer(state = initialState, action) {
@@ -29,6 +33,22 @@ function reducer(state = initialState, action) {
                 newStateInFavorites.favorites = updatedFavorites;
             }
             return newStateInFavorites;
+        case 'REGISTER_FAVORITES_ID':
+            return {
+                ...state,
+                listID: action.payload.listID
+            }
+        case 'GET_LIST_TO_STATE':
+            return {
+                ...state,
+                title: action.payload.title,
+                listMovies: action.payload.listMovies
+            }
+        case 'GET_MOVIE_INFO_TO_STATE':
+            return {
+                ...state,
+                listMovieDetails: action.payload.listMovieDetails,
+            }
         default:
             return state;
     }

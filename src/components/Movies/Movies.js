@@ -6,14 +6,16 @@ import { connect } from 'react-redux';
 class Movies extends Component {
     
     render() { 
-        return ( 
-            <ul className="movies">
-                {this.props.movies.map((movie) => (
-                    <li className="movies__item" key={movie.imdbID}>
-                        <MovieItem {...movie} />
-                    </li>
-                ))}
-            </ul>
+        return (
+            <div>
+                {this.props.movies ? <ul className="movies">
+                    {this.props.movies.map((movie) => (
+                        <li className="movies__item" key={movie.imdbID}>
+                            <MovieItem {...movie} />
+                        </li>
+                    ))}
+                </ul> : <p className="movies__error">Введен неверный запрос. Попробуйте еще раз.</p>}
+            </div>
         );
     }
 }

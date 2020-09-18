@@ -8,14 +8,7 @@ class ListPage extends Component {
     componentDidMount() {
         const id = this.props.match.params.id;
         console.log(id);
-        
-        // TODO: запрос к сервер на получение списка
         this.props.getList(id);
-        // TODO: запросы к серверу по всем imdbID
-        this.props.getMovieInfoByImdbID(this.props.listMovies);
-        console.log(this.props);
-        console.log(this.props.title);
-        console.log(this.props.listMovies);
     }
     render() { 
         return (
@@ -24,8 +17,14 @@ class ListPage extends Component {
                 <ul>
                     {this.props.listMovieDetails.map((item) => {
                         return (
-                            <li key={item.imdbID}>
-                                <a href={`https://www.imdb.com/title/${item.imdbID}/`} target="_blank">{item.Title} ({item.Year})</a>
+                            <li key={item.imdbID} className="list-page__movie">
+                                <img src={item.Poster} className="list-page__poster"/>
+                                <div>
+                                <a href={`https://www.imdb.com/title/${item.imdbID}/`} target="_blank" className="list-page__name">{item.Title}</a>
+                                <p className="list-page__details">{item.Country} / {item.Year}</p>
+                                <p className="list-page__details">{item.Genre}</p>
+                                <p className="list-page__text">{item.Plot}</p>
+                                </div>
                             </li>
                         );
                     })}
@@ -41,9 +40,8 @@ const mapDispatchToProps = dispatch => ({
   });
 const mapStateToProps = (state) => {
     return {
-        favorites: state.favorites,
         title: state.title,
-        listMovies: state.listMovies,
+        // listMovies: state.listMovies,
         listMovieDetails: state.listMovieDetails
     }
   };

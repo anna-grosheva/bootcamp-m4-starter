@@ -14,6 +14,9 @@ export function fetchMovieQuery(searchLine) {
         .then(data => {
             dispatch(findMovies(data.Search));
         })
+        .catch((error) => {
+            alert('Ошибка запроса');
+        }); 
     }
 }
 export function addMovieToFavorites(imdbID) {
@@ -75,6 +78,7 @@ export function getList(id) {
         .then(res => res.json())
         .then(data => {
             dispatch(getListToState(data.title, data.movies));
+            dispatch(getMovieInfoByImdbID(data.movies));
         })
     }
 }
@@ -95,8 +99,8 @@ export function getMovieInfoByImdbID(movies) {
             .then(res => res.json())
             .then(data => {
                 movieDetailsArray = [...movieDetailsArray, {...data}]
+                dispatch(getMovieInfoToState(movieDetailsArray));
             })
         })
-        dispatch(getMovieInfoToState(movieDetailsArray));
     }
 } 
